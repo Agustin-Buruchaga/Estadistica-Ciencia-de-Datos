@@ -90,4 +90,29 @@ def iqr(vals_in):
     q1 = percentil(vals_in, 25)
     q3 = percentil(vals_in, 75)
     return q3 - q1
+#covarianza
+def covarianza(vals_x, vals_y):
+	x = []
+	y = []
+	for i in range(len(vals_x):
+		if math.isfinite(vals_x[i]) & math.isfinite(vals_y[i]):
+			x.append(vals_x[i])
+			y.append(vals_y[i])
+	p_x = promedio(x)
+	p_y = promedio(y)
+	tt = []
+	for xv, yv in zip(x,y):
+		tt.append( (xv - p_x) * (yv - p_y) ) #no estoy seguro si la operacion está correcta
+	covarianza = sum(tt) / len(tt)
+	return covarianza
+
+def correlacion(vals_x,vals_y):
+	x = []
+	y = []
+	for i in range(len(vals_x)):
+		if math.isfinite(vals_x[i]) & math.isfinite(vals_y[i]):
+			x.append(vals_x[i])
+			y.append(vals_y[i])
+	r_xy = covarianza(x,y) / math.sqrt(varianza(x) * varianza(y))
+	return r_xy
     
