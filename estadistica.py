@@ -13,6 +13,14 @@ def mediana(lista):
 	else:
 		return lista_ordenada[mitad]
 
+def desviacion_mediana_absoluta(lista):
+    med_val = mediana(lista)
+    desviaciones = []
+    for x in lista:
+        if math.isfinite(x):
+            desviaciones.append(abs(x - med_val))
+    return mediana(desviaciones)
+
 def moda(lista):
     frecuencias = {}
 
@@ -94,12 +102,12 @@ def iqr(vals_in):
 def covarianza(vals_x, vals_y):
 	x = []
 	y = []
-	for i in range(len(vals_x):
+	for i in range(len(vals_x)):
 		if math.isfinite(vals_x[i]) & math.isfinite(vals_y[i]):
 			x.append(vals_x[i])
 			y.append(vals_y[i])
-	p_x = promedio(x)
-	p_y = promedio(y)
+	p_x = media(x)
+	p_y = media(y)
 	tt = []
 	for xv, yv in zip(x,y):
 		tt.append( (xv - p_x) * (yv - p_y) ) #no estoy seguro si la operacion está correcta
@@ -116,3 +124,4 @@ def correlacion(vals_x,vals_y):
 	r_xy = covarianza(x,y) / math.sqrt(varianza(x) * varianza(y))
 	return r_xy
     
+
